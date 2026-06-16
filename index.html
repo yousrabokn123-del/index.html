@@ -3,383 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>AllMods | Premium Modded Games & Apps</title>
-    <meta name="description" content="Download the latest modded games and apps for free. Secure, fast, and always updated for Android and iOS.">
-    <meta name="keywords" content="mod apk, modded games, premium apps, allmods, pokemon go spoofer, roblox mod">
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="AllMods - Premium Modded Content">
-    <meta property="og:description" content="Get access to the best modded games and apps with one click.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://allmods.store">
-
-    <!-- Tailwind CSS CDN -->
+    <title>AllMods | Official Mod Store</title>
+    <!-- Tailwind CSS for modern layout -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        
-        /* Custom UI Enhancements */
-        .glass-sidebar { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
-        .nav-active { background-color: #2563eb; color: white; box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39); }
-        .game-card:hover img { transform: scale(1.08); }
-        .detail-view { display: none; }
-        
-        /* Skeleton Animation */
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+        }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+        /* Card Hover Effects */
+        .game-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Modal Blur */
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Sidebar Nav */
+        .nav-item.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        /* Skeleton Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .placeholder-img {
+            background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+            background-size: 200% 100%;
+            animation: 1.5s shine linear infinite;
+        }
+        @keyframes shine {
+            to { background-position-x: -200%; }
+        }
     </style>
 </head>
-<body class="bg-[#F8FAFC] text-slate-900 overflow-x-hidden">
+<body class="overflow-x-hidden">
 
-    <!-- Mobile Header -->
+    <!-- Sidebar Mobile Toggle -->
     <div class="lg:hidden flex items-center justify-between p-4 bg-white border-b sticky top-0 z-50">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">A</div>
-            <span class="text-xl font-extrabold text-slate-800">AllMods</span>
-        </div>
-        <button id="mobileMenuBtn" class="p-2 text-slate-600">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <span class="text-xl font-extrabold text-blue-600">AllMods</span>
+        <button id="mobileMenuBtn" class="p-2 bg-gray-50 rounded-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
     </div>
 
-    <div class="flex min-h-screen">
+    <div class="flex">
         <!-- Sidebar Navigation -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 glass-sidebar border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-40 lg:sticky lg:top-0 h-screen flex flex-col">
+        <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-white border-r border-gray-100 transform -translate-x-full lg:translate-x-0 lg:relative transition-transform duration-300 ease-in-out z-40 h-screen flex flex-col">
             <div class="p-8">
-                <div class="flex items-center gap-3">
+                <a href="#" class="flex items-center gap-2">
                     <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-blue-200">A</div>
-                    <span class="text-2xl font-black text-slate-800 tracking-tight">AllMods</span>
-                </div>
+                    <span class="text-2xl font-black text-gray-800 tracking-tight">AllMods</span>
+                </a>
             </div>
 
-            <nav class="flex-1 px-4 space-y-2">
-                <button onclick="navigateTo('home')" class="nav-item nav-active w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition duration-200 font-semibold group">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <nav class="flex-1 px-4 space-y-2 mt-4">
+                <button onclick="renderAll()" class="nav-item active w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     Home
                 </button>
-                <button onclick="navigateTo('games')" class="nav-item w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition duration-200 font-semibold text-slate-500 hover:bg-slate-100 group">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg>
-                    Games
+                <button onclick="filterCategory('Action')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    Action
                 </button>
-                <button onclick="navigateTo('apps')" class="nav-item w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition duration-200 font-semibold text-slate-500 hover:bg-slate-100 group">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    Apps
+                <button onclick="filterCategory('Adventure')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Adventure
+                </button>
+                <button onclick="filterCategory('Simulation')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 0012 3a10.003 10.003 0 00-6.703 15.57L5 19.25a1 1 0 01-1 1H3a1 1 0 01-1-1v-1a1 1 0 011-1h.25M16.5 13.15L12 11.72M4.5 13.15L9 11.72"></path></svg>
+                    Simulation
                 </button>
             </nav>
 
-            <div class="p-6 mt-auto">
-                <div class="bg-blue-50 rounded-2xl p-4 text-center">
-                    <p class="text-sm font-bold text-blue-700">Official Store</p>
-                    <p class="text-[11px] text-blue-500 mt-1 uppercase tracking-widest font-semibold">allmods.store</p>
+            <div class="p-6">
+                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span class="text-sm font-bold text-gray-700">All Servers Online</span>
+                    </div>
                 </div>
             </div>
         </aside>
 
-        <!-- Overlay for mobile menu -->
-        <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden transition-opacity lg:hidden"></div>
-
-        <!-- Main Content Area -->
-        <main class="flex-1 w-full relative">
-            
-            <!-- Views: Grid and Detail -->
-            <div id="view-grid" class="p-6 md:p-12">
-                <header class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
-                    <div>
-                        <h2 id="view-title" class="text-4xl font-extrabold text-slate-900 tracking-tight mb-2">Explore Mods</h2>
-                        <p class="text-slate-500 font-medium">Safe & verified modifications for your favorite games.</p>
-                    </div>
-                    <div class="relative w-full md:w-[400px]">
-                        <input type="text" id="searchInput" placeholder="Search for mods..." class="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-[20px] focus:outline-none focus:ring-4 focus:ring-blue-100 shadow-sm transition-all text-slate-700">
-                        <svg class="w-6 h-6 text-slate-400 absolute left-4 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </div>
-                </header>
-
-                <!-- Filter Tags -->
-                <div id="filterContainer" class="flex flex-wrap gap-2 mb-10 overflow-x-auto pb-2 scrollbar-hide">
-                    <!-- Categories injected by JS -->
+        <!-- Main Content -->
+        <main class="flex-1 h-screen overflow-y-auto bg-[#F8FAFC] p-4 lg:p-10">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+                <div>
+                    <h1 class="text-3xl font-black text-gray-900 tracking-tight">Browse Premium Mods</h1>
+                    <p class="text-gray-500 font-medium">Safe, verified, and always up-to-date content.</p>
                 </div>
-
-                <!-- Games Grid -->
-                <div id="mainGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
-                    <!-- Content injected by JS -->
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="searchInput" placeholder="Search mods..." class="w-full pl-12 pr-4 py-4 bg-white border border-gray-100 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100 transition-all font-medium">
+                    <svg class="w-6 h-6 text-gray-300 absolute left-4 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
             </div>
 
-            <!-- Detail View -->
-            <div id="view-detail" class="detail-view p-6 md:p-12 max-w-6xl mx-auto">
-                <button onclick="navigateTo('home')" class="mb-8 flex items-center gap-2 text-slate-500 hover:text-blue-600 font-bold transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to browse
-                </button>
-                <div id="detailContent">
-                    <!-- Dynamic Detail Content -->
-                </div>
+            <!-- Content Grid -->
+            <div id="gameGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+                <!-- Games will be injected here -->
             </div>
 
+            <!-- Footer -->
+            <footer class="mt-20 py-10 border-t border-gray-100 text-center">
+                <p class="text-gray-400 text-sm font-semibold uppercase tracking-widest">© 2024 AllMods.store • All Rights Reserved</p>
+            </footer>
         </main>
     </div>
 
-    <script>
-        /* ====================================================
-           CONFIGURATION & DATA
-        ==================================================== */
-        const DOWNLOAD_LINK = "https://allmods.store/download-file-123";
+    <!-- Details Modal -->
+    <div id="gameModal" class="fixed inset-0 z-[60] hidden overflow-y-auto">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="modal-overlay fixed inset-0" onclick="closeModal()"></div>
+            <div class="bg-white w-full max-w-4xl rounded-[40px] shadow-2xl relative overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+                <!-- Modal content injected here -->
+            </div>
+        </div>
+    </div>
 
-        const DATA = [
+    <script>
+        // CONFIGURATION
+        const DOWNLOAD_URL = "https://allmods.store/download-center";
+
+        const GAME_DATA = [
             {
-                id: 1, type: 'game', name: 'Pokemon GO Spoofer', category: 'Adventure', rating: 4.9, size: '124 MB', version: '0.311.2', updated: '2 days ago', 
-                image: 'pokemon-go.webp', desc: 'Full-featured spoofer for Pokemon GO. Includes joystick navigation, teleportation, and IV checkers.',
-                features: ['Joystick Navigation', 'Teleport to Coordinates', 'Auto-Walking Mode', 'Enhanced Throw (Excellent/Curve)']
+                id: "pokemon-go",
+                name: "Pokemon GO Spoofer",
+                category: "Adventure",
+                rating: "4.9",
+                size: "124 MB",
+                version: "0.311.2",
+                image: "pokemon-go.webp",
+                desc: "The #1 spoofer for Pokemon GO. Features include joystick navigation, teleportation to any coordinates, and built-in IV checkers to find 100% IV Pokemon instantly.",
+                features: ["Joystick Navigation", "Safe Teleportation", "IV Checker Enabled", "Auto-Walk Mode"]
             },
             {
-                id: 2, type: 'game', name: 'Car Parking Multiplayer', category: 'Racing', rating: 4.7, size: '580 MB', version: '4.8.12', updated: '1 week ago', 
-                image: 'car-parking.webp', desc: 'The ultimate car simulator. This mod unlocks all premium cars and gives unlimited game currency.',
-                features: ['Unlimited Money', 'All 100+ Cars Unlocked', 'Premium Police Sirens', 'Free Engine Customization']
+                id: "car-parking",
+                name: "Car Parking Multiplayer Mod",
+                category: "Racing",
+                rating: "4.7",
+                size: "580 MB",
+                version: "4.8.12",
+                image: "car-parking.webp",
+                desc: "The ultimate driving simulator mod. Unlock all premium vehicles, get unlimited game currency, and access all car customization options for free.",
+                features: ["Unlimited Money", "All Cars Unlocked", "Unlocked Engine Upgrades", "No Advertisements"]
             },
             {
-                id: 3, type: 'game', name: 'Toca Boca World', category: 'Simulation', rating: 4.8, size: '512 MB', version: '1.87', updated: 'Today', 
-                image: 'toca-boca.webp', desc: 'Create your own stories in Toca Life World. Mod unlocks all character packs, houses, and furniture.',
-                features: ['All Furniture Unlocked', 'All Map Locations Unlocked', 'Premium Characters Included', 'No Ads']
+                id: "toca-boca",
+                name: "Toca Boca World Mod",
+                category: "Simulation",
+                rating: "4.8",
+                size: "520 MB",
+                version: "1.87",
+                image: "toca-boca.webp",
+                desc: "Unlock the full potential of Toca World. This mod grants access to every map location, all characters, and every piece of furniture in the game.",
+                features: ["All Maps Unlocked", "All Furniture Packs", "Everything is Free", "All Character Slots"]
             },
             {
-                id: 4, type: 'game', name: 'Baseball 9', category: 'Sports', rating: 4.6, size: '185 MB', version: '3.1.5', updated: '5 days ago', 
-                image: 'baseball9.webp', desc: 'Experience realistic baseball gameplay. Mod version gives you max resources to build your dream team.',
-                features: ['Unlimited Gems', 'Infinite Energy', 'Stamina Hack', 'Player Max Stats']
+                id: "baseball9",
+                name: "Baseball 9 Mod",
+                category: "Sports",
+                rating: "4.6",
+                size: "185 MB",
+                version: "3.2.1",
+                image: "baseball9.webp",
+                desc: "Experience high-speed, realistic baseball. Mod version includes unlimited gems and coins to max out your team's stats and gear without grinding.",
+                features: ["Unlimited Gems", "Infinite Energy", "Max Player Skills", "Free Upgrades"]
             },
             {
-                id: 5, type: 'game', name: 'Roblox', category: 'Adventure', rating: 4.5, size: '155 MB', version: '2.624', updated: 'Yesterday', 
-                image: 'roblox.webp', desc: 'Play millions of games created by the community. Mod menu features wallhack, flying, and more.',
-                features: ['Mod Menu Toggle', 'Wallhack', 'Fly & Super Jump', 'No Clip']
+                id: "roblox",
+                name: "Roblox",
+                category: "Adventure",
+                rating: "4.5",
+                size: "155 MB",
+                version: "2.624.0",
+                image: "roblox.webp",
+                desc: "The massive community platform. Mod includes a multi-tool menu for wallhack, super jump, and flying across various community games.",
+                features: ["Mod Menu Toggle", "Wallhack (ESP)", "Fly Mode", "God Mode (Select Games)"]
             },
             {
-                id: 6, type: 'game', name: 'Minecraft', category: 'Sandbox', rating: 4.9, size: '620 MB', version: '1.20.81', updated: '2 weeks ago', 
-                image: 'minecraft.webp', desc: 'Build and explore infinite worlds. Mod includes premium skin packs and immortality hack.',
-                features: ['Premium Skins Unlocked', 'God Mode (Invincibility)', 'Maximum Inventory Capacity', 'High Damage']
+                id: "minecraft",
+                name: "Minecraft",
+                category: "Sandbox",
+                rating: "4.9",
+                size: "620 MB",
+                version: "1.20.81",
+                image: "minecraft.webp",
+                desc: "Explore infinite worlds. This mod unlocks premium skins, textures, and grants immortality to survive the toughest mobs in survival mode.",
+                features: ["Premium Skins Unlocked", "Unlocked Textures", "Infinite Stamina", "One-Hit Kill Tools"]
             },
             {
-                id: 7, type: 'game', name: 'Free Fire', category: 'Action', rating: 4.4, size: '410 MB', version: '1.104', updated: '3 days ago', 
-                image: 'freefire.webp', desc: 'Competitive battle royale shooter. Mod includes visual aids and auto-aim assistance.',
-                features: ['ESP Line/Box', 'Aimbot Assistant', 'Increased Accuracy', 'Fast Medkit']
+                id: "freefire",
+                name: "Free Fire",
+                category: "Action",
+                rating: "4.4",
+                size: "400 MB",
+                version: "1.104.1",
+                image: "freefire.webp",
+                desc: "Ultimate battle royale experience. Mod features include visual ESP to spot enemies through walls and improved auto-aim assistance.",
+                features: ["ESP Line & Box", "Aimbot Assistance", "High Damage", "Speed Boost"]
             },
             {
-                id: 8, type: 'game', name: 'Subway Surfers', category: 'Arcade', rating: 4.8, size: '168 MB', version: '3.29.1', updated: 'Today', 
-                image: 'subway-surfers.webp', desc: 'The most popular runner. Mod provides infinite keys and coins to unlock every character.',
-                features: ['Unlimited Coins', 'Infinite Keys', 'Multipliers Maxed', 'All Jetpacks Unlocked']
+                id: "subway-surfers",
+                name: "Subway Surfers",
+                category: "Arcade",
+                rating: "4.8",
+                size: "168 MB",
+                version: "3.29.0",
+                image: "subway-surfers.webp",
+                desc: "Dash as fast as you can! Get unlimited coins and keys to unlock every character, every board, and every power-up in the game instantly.",
+                features: ["Unlimited Coins", "Infinite Keys", "All Boards Unlocked", "Max Multipliers"]
             },
             {
-                id: 9, type: 'game', name: 'Stumble Guys', category: 'Party', rating: 4.7, size: '205 MB', version: '0.71', updated: '4 days ago', 
-                image: 'stumble-guys.webp', desc: 'Knockout party game. Mod menu allows you to use all skins, animations, and emotes.',
-                features: ['Unlocked Special Skins', 'All Emotes & Taunts', 'Private Server Access', 'No Ads']
+                id: "stumble-guys",
+                name: "Stumble Guys",
+                category: "Party",
+                rating: "4.5",
+                size: "210 MB",
+                version: "0.71",
+                image: "stumble-guys.webp",
+                desc: "Massive multiplayer knockout game. Unlock all special skins, animations, and emotes to stand out in the stumbling crowd.",
+                features: ["All Skins Unlocked", "Special Emotes Enabled", "No Footstep Ads", "Map Teleport Fix"]
             }
         ];
 
-        /* ====================================================
-           CORE LOGIC
-        ==================================================== */
-        let currentFilter = 'all';
-        let currentSearch = '';
-        let currentType = 'all';
-
-        const mainGrid = document.getElementById('mainGrid');
-        const filterContainer = document.getElementById('filterContainer');
+        const gameGrid = document.getElementById('gameGrid');
         const searchInput = document.getElementById('searchInput');
+        const gameModal = document.getElementById('gameModal');
+        const modalContent = document.getElementById('modalContent');
         const sidebar = document.getElementById('sidebar');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
-        // Initial Load
-        window.onload = () => {
-            generateCategoryFilters();
-            renderContent();
-        };
-
-        // Mobile Menu Toggles
-        mobileMenuBtn.onclick = () => {
-            sidebar.classList.remove('-translate-x-full');
-            sidebarOverlay.classList.remove('hidden');
-        };
-        sidebarOverlay.onclick = () => {
-            sidebar.classList.add('-translate-x-full');
-            sidebarOverlay.classList.add('hidden');
-        };
-
-        // Search Input Event
-        searchInput.oninput = (e) => {
-            currentSearch = e.target.value.toLowerCase();
-            renderContent();
-        };
-
-        function generateCategoryFilters() {
-            const categories = ['all', ...new Set(DATA.map(item => item.category))];
-            filterContainer.innerHTML = categories.map(cat => `
-                <button onclick="setCategory('${cat}')" class="filter-tag whitespace-nowrap px-6 py-2.5 rounded-2xl font-bold text-sm transition-all duration-200 ${currentFilter === cat ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-white text-slate-500 hover:bg-slate-100 border border-slate-100 shadow-sm'}">
-                    ${cat.charAt(0).toUpperCase() + cat.slice(1)}
-                </button>
-            `).join('');
-        }
-
-        function setCategory(cat) {
-            currentFilter = cat;
-            generateCategoryFilters();
-            renderContent();
-        }
-
-        function navigateTo(type) {
-            currentType = type === 'home' ? 'all' : (type === 'games' ? 'game' : 'app');
-            document.getElementById('view-title').innerText = type === 'home' ? 'Explore Mods' : (type === 'games' ? 'Modded Games' : 'Modded Apps');
-            
-            // UI Navigation visual update
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('nav-active');
-                item.classList.add('text-slate-500', 'hover:bg-slate-100');
-            });
-            event.currentTarget.classList.add('nav-active');
-            event.currentTarget.classList.remove('text-slate-500', 'hover:bg-slate-100');
-
-            document.getElementById('view-grid').style.display = 'block';
-            document.getElementById('view-detail').style.display = 'none';
-            
-            // Close mobile menu
-            sidebar.classList.add('-translate-x-full');
-            sidebarOverlay.classList.add('hidden');
-            
-            renderContent();
-        }
-
-        function renderContent() {
-            let filtered = DATA.filter(item => {
-                const matchesSearch = item.name.toLowerCase().includes(currentSearch) || item.category.toLowerCase().includes(currentSearch);
-                const matchesCategory = currentFilter === 'all' || item.category === currentFilter;
-                const matchesType = currentType === 'all' || item.type === currentType;
-                return matchesSearch && matchesCategory && matchesType;
-            });
-
-            mainGrid.innerHTML = filtered.map(item => `
-                <div class="game-card bg-white rounded-[28px] p-4 shadow-sm hover:shadow-2xl hover:shadow-blue-100 border border-slate-100 transition-all duration-500 group cursor-pointer" onclick="showDetail(${item.id})">
-                    <div class="relative overflow-hidden rounded-[20px] mb-5 aspect-square bg-slate-100">
-                        <!-- We use placehold for demo, logic uses item.image -->
-                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition duration-700" onerror="this.src='https://placehold.co/400x400/6366f1/ffffff?text=${item.name.replace(' ', '+')}'">
-                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-blue-600 shadow-sm border border-white/50">
-                            ★ ${item.rating}
+        // Initial render
+        function renderGames(data) {
+            gameGrid.innerHTML = data.map(game => `
+                <div class="game-card bg-white rounded-[32px] p-4 border border-gray-100 shadow-sm cursor-pointer group" onclick="openModal('${game.id}')">
+                    <div class="relative overflow-hidden rounded-[24px] mb-5 aspect-square bg-gray-100">
+                        <img src="${game.image}" alt="${game.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/400x400/3b82f6/ffffff?text=${game.name.replace(/\s/g, '+')}'">
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-xs font-black text-blue-600 shadow-sm border border-white/50">
+                            ★ ${game.rating}
                         </div>
                     </div>
-                    <div class="px-2 pb-2">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <span class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-blue-500 block mb-1">${item.category}</span>
-                                <h3 class="font-bold text-xl text-slate-800 leading-tight group-hover:text-blue-600 transition">${item.name}</h3>
-                            </div>
+                    <div class="px-2">
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 block mb-2">${game.category}</span>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-4 group-hover:text-blue-600 transition">${game.name}</h3>
+                        <div class="flex items-center justify-between text-gray-400 text-xs font-bold uppercase tracking-widest border-t border-gray-50 pt-4">
+                            <span>${game.size}</span>
+                            <span>v${game.version}</span>
                         </div>
-                        <div class="flex items-center gap-3 text-slate-400 text-[13px] font-semibold mt-4">
-                            <span class="flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                                ${item.size}
-                            </span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-slate-200"></span>
-                            <span>v${item.version}</span>
-                        </div>
-                        <button class="w-full mt-6 py-4 bg-slate-50 group-hover:bg-blue-600 text-slate-600 group-hover:text-white rounded-[18px] font-bold text-sm transition-all duration-300">
-                            View Mod Info
-                        </button>
                     </div>
                 </div>
             `).join('');
+        }
+
+        renderGames(GAME_DATA);
+
+        // Search logic
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = GAME_DATA.filter(g => g.name.toLowerCase().includes(val) || g.category.toLowerCase().includes(val));
+            renderGames(filtered);
+        });
+
+        // Filter logic
+        function filterCategory(cat) {
+            const filtered = GAME_DATA.filter(g => g.category === cat);
+            renderGames(filtered);
             
-            if(filtered.length === 0) {
-                mainGrid.innerHTML = `
-                    <div class="col-span-full py-20 text-center">
-                        <div class="text-6xl mb-4">🔍</div>
-                        <h3 class="text-2xl font-bold text-slate-800">No mods found</h3>
-                        <p class="text-slate-500">Try searching for something else</p>
-                    </div>
-                `;
+            // UI state
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            // Close mobile menu
+            if (window.innerWidth < 1024) {
+                sidebar.classList.add('-translate-x-full');
             }
         }
 
-        function showDetail(id) {
-            const item = DATA.find(g => g.id === id);
-            document.getElementById('view-grid').style.display = 'none';
-            document.getElementById('view-detail').style.display = 'block';
-            window.scrollTo(0, 0);
+        function renderAll() {
+            renderGames(GAME_DATA);
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            if (window.innerWidth < 1024) sidebar.classList.add('-translate-x-full');
+        }
 
-            document.getElementById('detailContent').innerHTML = `
-                <div class="bg-white rounded-[40px] p-6 md:p-12 shadow-2xl shadow-slate-200 border border-slate-100">
-                    <div class="flex flex-col lg:flex-row gap-12">
-                        <!-- Left: Image -->
-                        <div class="w-full lg:w-[350px] flex-shrink-0">
-                            <div class="rounded-[32px] overflow-hidden shadow-2xl border-8 border-white">
-                                <img src="${item.image}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x600/6366f1/ffffff?text=${item.name.replace(' ', '+')}'">
-                            </div>
+        // Modal logic
+        function openModal(id) {
+            const game = GAME_DATA.find(g => g.id === id);
+            if (!game) return;
+
+            modalContent.innerHTML = `
+                <button onclick="closeModal()" class="absolute top-6 right-6 z-20 bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 lg:p-12">
+                        <div class="rounded-[32px] overflow-hidden shadow-2xl mb-8 aspect-square border-8 border-gray-50">
+                            <img src="${game.image}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x600/3b82f6/ffffff?text=${game.name.replace(/\s/g, '+')}'">
                         </div>
-                        
-                        <!-- Right: Info -->
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-black uppercase tracking-widest">${item.category}</span>
-                                <span class="px-4 py-1.5 bg-green-50 text-green-600 rounded-full text-xs font-black uppercase tracking-widest">Verified</span>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-2xl text-center">
+                                <p class="text-[10px] text-blue-400 font-black uppercase tracking-widest">Version</p>
+                                <p class="text-lg font-black text-blue-700">${game.version}</p>
                             </div>
-                            <h1 class="text-5xl font-black text-slate-900 mb-6 tracking-tight">${item.name}</h1>
-                            
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-                                <div class="bg-slate-50 p-4 rounded-3xl border border-slate-100 text-center">
-                                    <p class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-1">Rating</p>
-                                    <p class="text-xl font-black text-slate-800">★ ${item.rating}</p>
-                                </div>
-                                <div class="bg-slate-50 p-4 rounded-3xl border border-slate-100 text-center">
-                                    <p class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-1">Size</p>
-                                    <p class="text-xl font-black text-slate-800">${item.size}</p>
-                                </div>
-                                <div class="bg-slate-50 p-4 rounded-3xl border border-slate-100 text-center">
-                                    <p class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-1">Version</p>
-                                    <p class="text-xl font-black text-slate-800">${item.version}</p>
-                                </div>
-                                <div class="bg-slate-50 p-4 rounded-3xl border border-slate-100 text-center">
-                                    <p class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-1">Updated</p>
-                                    <p class="text-xl font-black text-slate-800 text-[14px] leading-tight flex items-center justify-center h-full">${item.updated}</p>
-                                </div>
+                            <div class="bg-gray-50 p-4 rounded-2xl text-center">
+                                <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest">Size</p>
+                                <p class="text-lg font-black text-gray-700">${game.size}</p>
                             </div>
-
-                            <a href="${DOWNLOAD_LINK}" class="flex items-center justify-center gap-4 w-full py-6 bg-blue-600 hover:bg-blue-700 text-white rounded-[24px] font-black text-2xl shadow-xl shadow-blue-200 transition-all transform hover:-translate-y-1">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                                DOWNLOAD NOW
-                            </a>
                         </div>
                     </div>
-
-                    <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
-                        <div>
-                            <h2 class="text-3xl font-black text-slate-900 mb-6">Description</h2>
-                            <p class="text-slate-500 text-lg leading-relaxed font-medium">${item.desc}</p>
-                        </div>
-                        <div>
-                            <h2 class="text-3xl font-black text-slate-900 mb-6">Mod Features</h2>
-                            <div class="space-y-4">
-                                ${item.features.map(feat => `
-                                    <div class="flex items-center gap-4 p-5 bg-blue-50/50 rounded-2xl border border-blue-50 shadow-sm">
-                                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-lg">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                        </div>
-                                        <span class="font-bold text-slate-700 text-lg">${feat}</span>
+                    <div class="md:w-1/2 p-8 lg:p-12 lg:pl-0 flex flex-col justify-center">
+                        <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-600 rounded-full text-xs font-black uppercase tracking-widest mb-4">${game.category}</span>
+                        <h2 class="text-4xl font-black text-gray-900 mb-6 leading-tight">${game.name}</h2>
+                        <p class="text-gray-500 leading-relaxed font-medium mb-8 text-lg">${game.desc}</p>
+                        
+                        <div class="space-y-4 mb-10">
+                            ${game.features.map(f => `
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                     </div>
-                                `).join('')}
-                            </div>
+                                    <span class="font-bold text-gray-700">${f}</span>
+                                </div>
+                            `).join('')}
                         </div>
+
+                        <a href="${DOWNLOAD_URL}" class="flex items-center justify-center gap-3 w-full py-6 bg-blue-600 hover:bg-blue-700 text-white rounded-3xl font-black text-xl shadow-xl shadow-blue-200 transition-all transform hover:-translate-y-1">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            DOWNLOAD MOD
+                        </a>
                     </div>
                 </div>
             `;
+            
+            gameModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+            document.body.style.overflow = 'hidden';
         }
+
+        function closeModal() {
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                gameModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 200);
+        }
+
+        // Mobile menu logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
     </script>
 </body>
 </html>
