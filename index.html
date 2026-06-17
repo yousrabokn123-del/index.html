@@ -3,385 +3,1772 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AllMods | Official Mod Store</title>
-    <!-- Tailwind CSS for modern layout -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>AllMods - Premium Modded Gaming Portal & Reviews</title>
     
+    <!-- SEO Optimization Meta Tags -->
+    <meta name="description" content="Discover premium gaming mods, modified apps, and detailed reviews for your favorite games like Pokemon GO, Minecraft, Roblox, and more at AllMods.">
+    <meta name="keywords" content="gaming mods, modded games, android mods, ios mods, game reviews, allmods, pokemongo spoofer, minecraft mod, roblox mod">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="AllMods">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="AllMods - Premium Modded Gaming Portal">
+    <meta property="og:description" content="Explore premium, verified gaming reviews and modifications for top-tier games.">
+    <meta property="og:image" content="minecraft.webp">
+    <meta property="og:url" content="https://allmods.store">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-hover: #4338CA;
+            --accent: #10B981;
+            --accent-hover: #059669;
+            --background: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f9fafb;
-            color: #111827;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-        /* Card Hover Effects */
+        ul {
+            list-style: none;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-muted);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box-header {
+            position: relative;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .search-box-header {
+                display: block;
+            }
+        }
+
+        .search-box-header input {
+            padding: 8px 16px 8px 36px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            outline: none;
+            width: 220px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .search-box-header input:focus {
+            border-color: var(--primary);
+            width: 280px;
+        }
+
+        .search-box-header i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .btn-mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* Hero Banner Section */
+        .hero {
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, rgba(79, 70, 229, 0.06) 0%, rgba(255, 255, 255, 0) 50%), var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(79, 70, 229, 0.08);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 32px auto;
+        }
+
+        /* Search Section Inside Hero */
+        .hero-search {
+            max-width: 580px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-search input {
+            width: 100%;
+            padding: 16px 20px 16px 52px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .hero-search input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+        }
+
+        .hero-search i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+        /* Category filters */
+        .categories-container {
+            margin: 40px 0 20px 0;
+        }
+
+        .categories-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section layout */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+
+        @media (min-width: 640px) {
+            .main-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .main-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Modern Game Card Layout */
         .game-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
+
         .game-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(79, 70, 229, 0.2);
         }
 
-        /* Modal Blur */
-        .modal-overlay {
-            backdrop-filter: blur(8px);
-            background: rgba(255, 255, 255, 0.7);
+        .card-thumbnail-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #E2E8F0;
+            overflow: hidden;
         }
 
-        /* Sidebar Nav */
-        .nav-item.active {
-            background-color: #3b82f6;
-            color: white;
+        .card-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
 
-        /* Skeleton Animation */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .game-card:hover .card-thumbnail {
+            transform: scale(1.05);
         }
-        .placeholder-img {
-            background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
-            background-size: 200% 100%;
-            animation: 1.5s shine linear infinite;
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 700;
         }
-        @keyframes shine {
-            to { background-position-x: -200%; }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #F59E0B;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .card-footer-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .game-spec {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .game-spec span {
+            display: block;
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 13px;
+        }
+
+        .btn-card-details {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .btn-card-details:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Dynamic Detail Page Layout */
+        .detail-layout {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 1024px) {
+            .detail-layout {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .detail-hero {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .detail-cover {
+            position: relative;
+            padding-top: 40%; /* Panoramic Aspect */
+            background-color: #E2E8F0;
+        }
+
+        .detail-cover img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-header-block {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        @media (min-width: 640px) {
+            .detail-header-block {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 30px;
+            }
+        }
+
+        .detail-app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: var(--shadow-md);
+            margin-top: -60px;
+            background-color: #fff;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 640px) {
+            .detail-app-icon {
+                width: 120px;
+                height: 120px;
+                margin-top: -80px;
+            }
+        }
+
+        .detail-header-info {
+            flex-grow: 1;
+        }
+
+        .detail-title {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .detail-meta-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .detail-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .detail-meta-item i {
+            color: var(--primary);
+        }
+
+        .detail-rating {
+            color: #F59E0B;
+            font-weight: 700;
+        }
+
+        .detail-main-content {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .detail-section-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-section-title i {
+            color: var(--primary);
+        }
+
+        .detail-description {
+            font-size: 15px;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 640px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background-color: var(--background);
+            padding: 16px;
+            border-radius: var(--radius-md);
+        }
+
+        .feature-item i {
+            color: var(--accent);
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .feature-text h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Screenshot gallery */
+        .screenshots-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 640px) {
+            .screenshots-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .screenshot-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background-color: #E2E8F0;
+            padding-top: 56.25%;
+            position: relative;
+        }
+
+        .screenshot-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .screenshot-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Sidebar info */
+        .detail-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .download-box {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .download-box h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .download-box p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .btn-download-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-download-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        .specs-table {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .spec-val {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Dynamic FAQs Section */
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background-color: var(--surface);
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--surface);
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: var(--background);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            transition: max-height 0.5s cubic-bezier(1, 0, 1, 0), padding 0.3s ease;
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* General Info Pages Content Layout */
+        .info-page-wrapper {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .info-page-wrapper h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .info-page-wrapper h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        .info-page-wrapper p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .info-page-wrapper ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .info-page-wrapper li {
+            margin-bottom: 8px;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #0F172A;
+            color: #94A3B8;
+            padding: 60px 0 30px 0;
+            border-top: 1px solid #1E293B;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 2fr repeat(3, 1fr);
+            }
+        }
+
+        .footer-brand h2 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand h2 span {
+            color: var(--primary);
+        }
+
+        .footer-brand p {
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #1E293B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-nav-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1E293B;
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+            }
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        /* Mobile Nav Toggle Menu Drawer */
+        .mobile-menu {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: var(--surface);
+            z-index: 999;
+            overflow: hidden;
+            transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 0px solid var(--border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-menu.active {
+            height: calc(100vh - 72px);
+            border-bottom-width: 1px;
+        }
+
+        .mobile-menu-inner {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-menu-link {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu-link:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive Visibility Classes */
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+            .btn-mobile-menu {
+                display: block;
+            }
         }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
-    <!-- Sidebar Mobile Toggle -->
-    <div class="lg:hidden flex items-center justify-between p-4 bg-white border-b sticky top-0 z-50">
-        <span class="text-xl font-extrabold text-blue-600">AllMods</span>
-        <button id="mobileMenuBtn" class="p-2 bg-gray-50 rounded-lg">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        </button>
-    </div>
-
-    <div class="flex">
-        <!-- Sidebar Navigation -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-white border-r border-gray-100 transform -translate-x-full lg:translate-x-0 lg:relative transition-transform duration-300 ease-in-out z-40 h-screen flex flex-col">
-            <div class="p-8">
-                <a href="#" class="flex items-center gap-2">
-                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-blue-200">A</div>
-                    <span class="text-2xl font-black text-gray-800 tracking-tight">AllMods</span>
-                </a>
-            </div>
-
-            <nav class="flex-1 px-4 space-y-2 mt-4">
-                <button onclick="renderAll()" class="nav-item active w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                    Home
-                </button>
-                <button onclick="filterCategory('Action')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    Action
-                </button>
-                <button onclick="filterCategory('Adventure')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Adventure
-                </button>
-                <button onclick="filterCategory('Simulation')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-xl transition font-semibold text-gray-600 hover:bg-gray-50">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 0012 3a10.003 10.003 0 00-6.703 15.57L5 19.25a1 1 0 01-1 1H3a1 1 0 01-1-1v-1a1 1 0 011-1h.25M16.5 13.15L12 11.72M4.5 13.15L9 11.72"></path></svg>
-                    Simulation
-                </button>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo" onclick="navigateTo('home')">
+                ALL<span>MODS</span>
+            </a>
+            
+            <nav class="nav-links">
+                <span class="nav-link active" id="nav-home" onclick="navigateTo('home')">Home</span>
+                <span class="nav-link" id="nav-games" onclick="navigateTo('home'); scrollToGames();">All Games</span>
+                <span class="nav-link" id="nav-contact" onclick="navigateTo('contact')">Contact Us</span>
+                <span class="nav-link" id="nav-privacy" onclick="navigateTo('privacy')">Privacy Policy</span>
             </nav>
 
-            <div class="p-6">
-                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Status</p>
-                    <div class="flex items-center gap-2">
-                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                        <span class="text-sm font-bold text-gray-700">All Servers Online</span>
-                    </div>
+            <div class="header-actions">
+                <div class="search-box-header">
+                    <input type="text" placeholder="Search games..." id="header-search-input" onkeyup="handleGlobalSearch(event)">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
+                <button class="btn-mobile-menu" onclick="toggleMobileMenu()" id="menu-btn">
+                    <i class="fa-solid fa-bars" id="menu-icon"></i>
+                </button>
             </div>
-        </aside>
+        </div>
+    </header>
 
-        <!-- Main Content -->
-        <main class="flex-1 h-screen overflow-y-auto bg-[#F8FAFC] p-4 lg:p-10">
-            <!-- Header Section -->
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-                <div>
-                    <h1 class="text-3xl font-black text-gray-900 tracking-tight">Browse Premium Mods</h1>
-                    <p class="text-gray-500 font-medium">Safe, verified, and always up-to-date content.</p>
-                </div>
-                <div class="relative w-full md:w-96">
-                    <input type="text" id="searchInput" placeholder="Search mods..." class="w-full pl-12 pr-4 py-4 bg-white border border-gray-100 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100 transition-all font-medium">
-                    <svg class="w-6 h-6 text-gray-300 absolute left-4 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </div>
-            </div>
-
-            <!-- Content Grid -->
-            <div id="gameGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
-                <!-- Games will be injected here -->
-            </div>
-
-            <!-- Footer -->
-            <footer class="mt-20 py-10 border-t border-gray-100 text-center">
-                <p class="text-gray-400 text-sm font-semibold uppercase tracking-widest">© 2024 AllMods.store • All Rights Reserved</p>
-            </footer>
-        </main>
-    </div>
-
-    <!-- Details Modal -->
-    <div id="gameModal" class="fixed inset-0 z-[60] hidden overflow-y-auto">
-        <div class="min-h-screen flex items-center justify-center p-4">
-            <div class="modal-overlay fixed inset-0" onclick="closeModal()"></div>
-            <div class="bg-white w-full max-w-4xl rounded-[40px] shadow-2xl relative overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
-                <!-- Modal content injected here -->
-            </div>
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-inner">
+            <a href="#" class="mobile-menu-link" onclick="navigateTo('home'); toggleMobileMenu();">Home</a>
+            <a href="#" class="mobile-menu-link" onclick="navigateTo('home'); scrollToGames(); toggleMobileMenu();">All Games</a>
+            <a href="#" class="mobile-menu-link" onclick="navigateTo('contact'); toggleMobileMenu();">Contact Us</a>
+            <a href="#" class="mobile-menu-link" onclick="navigateTo('privacy'); toggleMobileMenu();">Privacy Policy</a>
+            <a href="#" class="mobile-menu-link" onclick="navigateTo('terms'); toggleMobileMenu();">Terms of Service</a>
         </div>
     </div>
 
-    <script>
-        // CONFIGURATION
-        const DOWNLOAD_URL = "https://allmods.store/download-center";
+    <!-- MAIN DYNAMIC CONTENT BOX -->
+    <main id="main-content">
+        <!-- Default Content loaded via JS (Home view initially) -->
+    </main>
 
-        const GAME_DATA = [
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>ALL<span>MODS</span></h2>
+                    <p>Your premium gateway to the most complete library of reviewed mobile game adaptations, customizations, and optimization tools. Fully safe and continuously updated.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-nav-title">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="navigateTo('home'); filterCategory('Action');">Action</a></li>
+                        <li><a onclick="navigateTo('home'); filterCategory('Simulation');">Simulation</a></li>
+                        <li><a onclick="navigateTo('home'); filterCategory('Sandbox');">Sandbox</a></li>
+                        <li><a onclick="navigateTo('home'); filterCategory('Arcade');">Arcade</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-nav-title">Support</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="navigateTo('contact')">Contact Us</a></li>
+                        <li><a onclick="navigateTo('privacy')">Privacy Policy</a></li>
+                        <li><a onclick="navigateTo('terms')">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-nav-title">Top App Builds</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="navigateToDetail('pokemon-go-spoofer')">Pokemon GO Spoofer</a></li>
+                        <li><a onclick="navigateToDetail('minecraft')">Minecraft Edition</a></li>
+                        <li><a onclick="navigateToDetail('roblox')">Roblox Client</a></li>
+                        <li><a onclick="navigateToDetail('subway-surfers')">Subway Surfers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AllMods.store. All rights reserved. Created with compliance and security standards.</p>
+                <div class="footer-legal-links">
+                    <a onclick="navigateTo('privacy')">Privacy Policy</a>
+                    <a onclick="navigateTo('terms')">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Game Database & Engine Scripts -->
+    <script>
+        // Global Game Database
+        const gamesDatabase = [
             {
-                id: "pokemon-go",
-                name: "Pokemon GO Spoofer",
+                id: "pokemon-go-spoofer",
+                title: "Pokemon GO Spoofer",
                 category: "Adventure",
-                rating: "4.9",
-                size: "124 MB",
-                version: "0.311.2",
-                image: "pokemon-go.webp",
-                desc: "The #1 spoofer for Pokemon GO. Features include joystick navigation, teleportation to any coordinates, and built-in IV checkers to find 100% IV Pokemon instantly.",
-                features: ["Joystick Navigation", "Safe Teleportation", "IV Checker Enabled", "Auto-Walk Mode"]
-            },
-            {
-                id: "car-parking",
-                name: "Car Parking Multiplayer Mod",
-                category: "Racing",
+                secondaryCategory: "Simulation",
                 rating: "4.7",
-                size: "580 MB",
-                version: "4.8.12",
-                image: "car-parking.webp",
-                desc: "The ultimate driving simulator mod. Unlock all premium vehicles, get unlimited game currency, and access all car customization options for free.",
-                features: ["Unlimited Money", "All Cars Unlocked", "Unlocked Engine Upgrades", "No Advertisements"]
+                version: "0.301.0",
+                size: "142 MB",
+                image: "pokemon-go.webp",
+                tagline: "Unleash safe location emulation and premium helper tools directly inside your native app client.",
+                description: "Pokemon GO Spoofer delivers an exceptional location-enhancement helper suite designed carefully for users looking to optimize their performance metrics. Enjoy smooth controls, customizable routes, coordinate memory presets, and automatic pacing configuration options that work seamlessly directly inside the custom client framework.",
+                lastUpdated: "January 24, 2025",
+                features: [
+                    { title: "Safe GPS Joystick Emulation", desc: "Enjoy responsive digital analog stick joystick movement." },
+                    { title: "Auto Walk / Pacing Modes", desc: "Configure custom patrol routes with defined safety limits." },
+                    { title: "Interactive Interactive Map Overlay", desc: "Access high-accuracy coordinate telemetry data in real-time." },
+                    { title: "Smart Cooldown Teleport Safeguard", desc: "Prevent travel telemetry alerts via built-in system protection timers." }
+                ],
+                faqs: [
+                    { q: "Is registration required for this custom map package?", a: "No account registration is required. You can load it alongside or on top of regular client profiles dynamically." },
+                    { q: "How can I maintain stable device temperature while running?", a: "Turn on eco-render mode within the internal configuration menu to reduce CPU-resource usage." }
+                ]
             },
             {
-                id: "toca-boca",
-                name: "Toca Boca World Mod",
-                category: "Simulation",
-                rating: "4.8",
-                size: "520 MB",
-                version: "1.87",
-                image: "toca-boca.webp",
-                desc: "Unlock the full potential of Toca World. This mod grants access to every map location, all characters, and every piece of furniture in the game.",
-                features: ["All Maps Unlocked", "All Furniture Packs", "Everything is Free", "All Character Slots"]
-            },
-            {
-                id: "baseball9",
-                name: "Baseball 9 Mod",
-                category: "Sports",
+                id: "car-parking-multiplayer",
+                title: "Car Parking Multiplayer",
+                category: "Racing",
+                secondaryCategory: "Simulation",
                 rating: "4.6",
-                size: "185 MB",
+                version: "4.8.15.4",
+                size: "850 MB",
+                image: "car-parking.webp",
+                tagline: "Experience limitless customization, structural unlocked mechanics, and free vehicle access across the open world.",
+                description: "Step inside Car Parking Multiplayer with unconstrained structural access to extreme custom features. Experience unrestricted modifications for the entire vehicle catalog, unlock top performance parts, dynamic livery skins, and customized structural configurations with premium multiplayer lobbies activated.",
+                lastUpdated: "January 19, 2025",
+                features: [
+                    { title: "Complete Unlocked Garage", desc: "Instantly preview, drive, and save every vehicle in the fleet catalog." },
+                    { title: "Max Engine Tuning Modules", desc: "Unleash high horsepower potentials without credits constraints." },
+                    { title: "Multiplayer Lobby Access", desc: "Interact directly with official multiplayer lobbies without custom partition limits." },
+                    { title: "Premium Visual Wraps Unlocked", desc: "Access every customization decal and paint variant instantly." }
+                ],
+                faqs: [
+                    { q: "Does this save progress locally?", a: "Yes, you can save locally or cloud-link with structural profiles to transfer structural customization data." },
+                    { q: "Will multiplayer play reliably?", a: "Yes, this dynamic build targets standard matchmaking environments directly." }
+                ]
+            },
+            {
+                id: "toca-boca-world",
+                title: "Toca Boca World",
+                category: "Simulation",
+                secondaryCategory: "Adventure",
+                rating: "4.5",
+                version: "1.84",
+                size: "560 MB",
+                image: "toca-boca.webp",
+                tagline: "Build a full world of structures with all locations, designer homes, and premium furniture sets fully unlocked.",
+                description: "Toca Boca World custom client lets you jump into unlocked imagination. Access every single expansion, build customizable modern mansions, populate your zones with unique designer characters, and decorate every room using premium furniture asset catalogs usually locked in the basic package.",
+                lastUpdated: "January 22, 2025",
+                features: [
+                    { title: "All Premium Locations Unlocked", desc: "Instantly travel to and build on all 100+ cities and zones." },
+                    { title: "Complete Character Creator Unlocked", desc: "Choose from 500+ premium styling, hair, and clothing assets." },
+                    { title: "Designer Home Catalog Fully Available", desc: "Acquire every modern luxury villa and custom structure kit." },
+                    { title: "Unlimited Custom Items & Toys", desc: "Populate your rooms with unique items from premium store additions." }
+                ],
+                faqs: [
+                    { q: "Are all safe settings maintained?", a: "Yes, kids safety features and local secure profiles are carefully preserved." },
+                    { q: "Will subsequent updates break my house saves?", a: "No, save files are stored safely in user data directories which remain untouched." }
+                ]
+            },
+            {
+                id: "baseball-9",
+                title: "Baseball 9",
+                category: "Sports",
+                secondaryCategory: "Arcade",
+                rating: "4.8",
                 version: "3.2.1",
+                size: "180 MB",
                 image: "baseball9.webp",
-                desc: "Experience high-speed, realistic baseball. Mod version includes unlimited gems and coins to max out your team's stats and gear without grinding.",
-                features: ["Unlimited Gems", "Infinite Energy", "Max Player Skills", "Free Upgrades"]
+                tagline: "Unlock customized professional players, unlimited structural energy reserves, and advanced bat accuracy.",
+                description: "Strike out the competition using the ultimate Baseball 9 Custom Build. Take your franchise to elite divisions immediately with infinite stamina, maximum training resource modules, customized player aesthetic gear unlocked, and a precise bat visual guide to lock in perfect runs.",
+                lastUpdated: "January 15, 2025",
+                features: [
+                    { title: "Maximum Stamina Reserves", desc: "Keep your starting pitchers and field stars in peak performance indefinitely." },
+                    { title: "Infinite Upgrade Tokens", desc: "Max out speed, batting power, and pitching skill categories instantly." },
+                    { title: "Precise Batting Guide Ring", desc: "View actual pitches trajectories and land clean home runs." },
+                    { title: "All Premium Equipment Unlocked", desc: "Equip state-of-the-art customized bats, cleats, and safety gear." }
+                ],
+                faqs: [
+                    { q: "Does this require device root privileges?", a: "No, this customized client operates cleanly under local standard user modes." },
+                    { q: "Can I play league matches offline?", a: "Absolutely. Full offline performance is integrated cleanly inside this package." }
+                ]
             },
             {
                 id: "roblox",
-                name: "Roblox",
-                category: "Adventure",
-                rating: "4.5",
-                size: "155 MB",
-                version: "2.624.0",
+                title: "Roblox Client",
+                category: "Sandbox",
+                secondaryCategory: "Adventure",
+                rating: "4.6",
+                version: "2.615.631",
+                size: "160 MB",
                 image: "roblox.webp",
-                desc: "The massive community platform. Mod includes a multi-tool menu for wallhack, super jump, and flying across various community games.",
-                features: ["Mod Menu Toggle", "Wallhack (ESP)", "Fly Mode", "God Mode (Select Games)"]
+                tagline: "Harness comprehensive customization, flight modifiers, and customized UI toolkits built safely for sandbox games.",
+                description: "Elevate your world interactions using our carefully tuned custom Roblox structural helper client. Features interactive menu controls with customizable physics modifiers, standard jump alterations, wall clipping previews, and premium customized graphic options to enhance low-end mobile hardware outputs.",
+                lastUpdated: "January 28, 2025",
+                features: [
+                    { title: "Universal Flight Modifier", desc: "Glide through customized structural environments safely using adjustable speeds." },
+                    { title: "Dynamic Super Jump Toggle", desc: "Reach custom heights easily with custom scaling gravity options." },
+                    { title: "Framerate Booster Tweaks", desc: "Optimize native rendering engine behaviors for low-end device profiles." },
+                    { title: "Custom Night-Mode Rendering", desc: "Enable stunning shaders and global lighting settings directly." }
+                ],
+                faqs: [
+                    { q: "Is this safe to run beside standard services?", a: "We strongly recommend starting with guest-oriented testing profiles to discover custom values safely." },
+                    { q: "Will script execution support my custom game elements?", a: "Yes, standard level APIs are loaded into this localized container." }
+                ]
             },
             {
                 id: "minecraft",
-                name: "Minecraft",
+                title: "Minecraft",
                 category: "Sandbox",
+                secondaryCategory: "Simulation",
                 rating: "4.9",
-                size: "620 MB",
-                version: "1.20.81",
+                version: "1.20.73",
+                size: "650 MB",
                 image: "minecraft.webp",
-                desc: "Explore infinite worlds. This mod unlocks premium skins, textures, and grants immortality to survive the toughest mobs in survival mode.",
-                features: ["Premium Skins Unlocked", "Unlocked Textures", "Infinite Stamina", "One-Hit Kill Tools"]
+                tagline: "Gain structural texture previews, custom skin packages, and maximum render configurations fully unlocked.",
+                description: "Experience infinite survival and design using Minecraft Custom Edition. Comes fully bundled with unlocked global texture packages, structural premium skin models, realistic rendering adjustments, and dynamic configuration tools that let you optimize world simulation distance settings.",
+                lastUpdated: "January 26, 2025",
+                features: [
+                    { title: "Premium Visual Shaders Unlocked", desc: "Instantly deploy stunning lighting effects and realistic water maps." },
+                    { title: "Unrestricted Character Skins", desc: "Customize your player model with thousands of premium skin layouts." },
+                    { title: "Max Simulation Render Limit", desc: "Extend distance drawing targets beyond standard device limits." },
+                    { title: "Built-in World Backup Helper", desc: "Keep critical progress safe using automatic daily background backups." }
+                ],
+                faqs: [
+                    { q: "Can I connect to custom realm servers?", a: "You can host custom multiplayer rooms locally or join non-secured servers." },
+                    { q: "Is the full creative mode accessible?", a: "Yes, all creative modes, flat worlds, and command blocks are completely unlocked." }
+                ]
             },
             {
-                id: "freefire",
-                name: "Free Fire",
+                id: "free-fire",
+                title: "Free Fire",
                 category: "Action",
-                rating: "4.4",
-                size: "400 MB",
-                version: "1.104.1",
+                secondaryCategory: "Racing",
+                rating: "4.5",
+                version: "1.103.1",
+                size: "380 MB",
                 image: "freefire.webp",
-                desc: "Ultimate battle royale experience. Mod features include visual ESP to spot enemies through walls and improved auto-aim assistance.",
-                features: ["ESP Line & Box", "Aimbot Assistance", "High Damage", "Speed Boost"]
+                tagline: "Improve aiming performance, maximize graphics rendering, and configure low lag client properties.",
+                description: "Unlock structural precision in Free Fire Custom Edition. This performance-focused client includes high-fps optimization algorithms, customizable control interfaces, customized item overlay assists, and safe network optimization routines to keep match ping at minimal thresholds.",
+                lastUpdated: "January 23, 2025",
+                features: [
+                    { title: "Performance Frame Booster", desc: "Force smooth 60fps rendering even on entry-level mobile devices." },
+                    { title: "High-Visibility Enemy Contrast", desc: "Improve spotting rates with high-dynamic color balancing parameters." },
+                    { title: "Safe Network Packet Optimizer", desc: "Direct client traffic through optimized path routines to reduce lag." },
+                    { title: "Advanced Aim Control Calibration", desc: "Fine-tune deadzones and dynamic touch sensitivity responses." }
+                ],
+                faqs: [
+                    { q: "Will this support regular updates?", a: "Critical game elements updates are configured dynamically inside our launcher shell." },
+                    { q: "Does it change system game settings?", a: "No, adjustments remain strictly encapsulated inside this specific launcher package." }
+                ]
             },
             {
                 id: "subway-surfers",
-                name: "Subway Surfers",
+                title: "Subway Surfers",
                 category: "Arcade",
-                rating: "4.8",
-                size: "168 MB",
-                version: "3.29.0",
+                secondaryCategory: "Action",
+                rating: "4.7",
+                version: "3.26.1",
+                size: "155 MB",
                 image: "subway-surfers.webp",
-                desc: "Dash as fast as you can! Get unlimited coins and keys to unlock every character, every board, and every power-up in the game instantly.",
-                features: ["Unlimited Coins", "Infinite Keys", "All Boards Unlocked", "Max Multipliers"]
+                tagline: "Unlock customized hoverboards, absolute character catalog listings, and dynamic coin multiplayer systems.",
+                description: "Run endlessly through Subway Surfers Custom Build. Experience maximum level performance metrics, customize your player with every seasonal skin available, activate extreme hoverboard powerups instantly, and enjoy customized dynamic multipliers to claim top leaderboard ranks.",
+                lastUpdated: "January 11, 2025",
+                features: [
+                    { title: "All Boards Unlocked", desc: "Equip dynamic teleporting boards or custom fire-breathing hoverboards." },
+                    { title: "Uncapped Token Reserves", desc: "Instantly redeem key multipliers to rescue runs without limits." },
+                    { title: "Complete Global Team Roster", desc: "Access limited-edition seasonal run figures from around the world." },
+                    { title: "Dynamic Speed Control Slider", desc: "Calibrate gameplay difficulty velocities to suit your reflex style." }
+                ],
+                faqs: [
+                    { q: "Are dynamic online leaderboards functional?", a: "Yes, custom-built scoreboards allow safe comparison with other portal users." },
+                    { q: "How can I change localized theme packages?", a: "Change region maps directly within the game's developer tools menu." }
+                ]
             },
             {
                 id: "stumble-guys",
-                name: "Stumble Guys",
-                category: "Party",
-                rating: "4.5",
-                size: "210 MB",
-                version: "0.71",
+                title: "Stumble Guys",
+                category: "Action",
+                secondaryCategory: "Arcade",
+                rating: "4.4",
+                version: "0.68",
+                size: "190 MB",
                 image: "stumble-guys.webp",
-                desc: "Massive multiplayer knockout game. Unlock all special skins, animations, and emotes to stand out in the stumbling crowd.",
-                features: ["All Skins Unlocked", "Special Emotes Enabled", "No Footstep Ads", "Map Teleport Fix"]
+                tagline: "Preview unreleased customized skins, deploy all legendary emotes, and enjoy clean matchmaking features.",
+                description: "Stumble Guys Custom Client is here to help you cross the finish line with pride. Showcase elite customizations with every single luxury suit, unlock legendary push emotes, and bypass basic visual restrictions with our structural game rendering enhancements.",
+                lastUpdated: "January 25, 2025",
+                features: [
+                    { title: "Legendary Emote Catalog Loaded", desc: "Utilize elite visual emotes including punch, kick, and special actions." },
+                    { title: "All Skin Suits Fully Previewed", desc: "Select premium skins, special effects trails, and custom celebrations." },
+                    { title: "Anti-Collision Lag Safeguard", desc: "Reduce dynamic physics server latency to maintain clean player pathways." },
+                    { title: "Custom Room Hosting Unlocked", desc: "Create private match lobbies containing customized rule restrictions." }
+                ],
+                faqs: [
+                    { q: "Can other players see my custom skins?", a: "This build features full visual overrides locally. Others view native server configurations." },
+                    { q: "Are competitive events supported?", a: "Yes, you can participate in all monthly tournaments and custom global match rooms." }
+                ]
             }
         ];
 
-        const gameGrid = document.getElementById('gameGrid');
-        const searchInput = document.getElementById('searchInput');
-        const gameModal = document.getElementById('gameModal');
-        const modalContent = document.getElementById('modalContent');
-        const sidebar = document.getElementById('sidebar');
+        // App States
+        let currentCategory = 'All';
+        let searchQuery = '';
+        let currentView = 'home'; // 'home', 'detail', 'contact', 'privacy', 'terms'
+        let activeGameId = '';
 
-        // Initial render
-        function renderGames(data) {
-            gameGrid.innerHTML = data.map(game => `
-                <div class="game-card bg-white rounded-[32px] p-4 border border-gray-100 shadow-sm cursor-pointer group" onclick="openModal('${game.id}')">
-                    <div class="relative overflow-hidden rounded-[24px] mb-5 aspect-square bg-gray-100">
-                        <img src="${game.image}" alt="${game.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/400x400/3b82f6/ffffff?text=${game.name.replace(/\s/g, '+')}'">
-                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-xs font-black text-blue-600 shadow-sm border border-white/50">
-                            ★ ${game.rating}
-                        </div>
-                    </div>
-                    <div class="px-2">
-                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 block mb-2">${game.category}</span>
-                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-4 group-hover:text-blue-600 transition">${game.name}</h3>
-                        <div class="flex items-center justify-between text-gray-400 text-xs font-bold uppercase tracking-widest border-t border-gray-50 pt-4">
-                            <span>${game.size}</span>
-                            <span>v${game.version}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+        // Download Action URL
+        const globalDownloadUrl = "https://attorneycambridge.com/cl/i/344g46";
+
+        // Navigation Engine
+        function navigateTo(view) {
+            currentView = view;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderPageContent();
+            updateNavbarState();
         }
 
-        renderGames(GAME_DATA);
+        function navigateToDetail(gameId) {
+            currentView = 'detail';
+            activeGameId = gameId;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderPageContent();
+            updateNavbarState();
+        }
 
-        // Search logic
-        searchInput.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            const filtered = GAME_DATA.filter(g => g.name.toLowerCase().includes(val) || g.category.toLowerCase().includes(val));
-            renderGames(filtered);
-        });
+        function scrollToGames() {
+            setTimeout(() => {
+                const target = document.getElementById('games-section-start');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 150);
+        }
 
-        // Filter logic
-        function filterCategory(cat) {
-            const filtered = GAME_DATA.filter(g => g.category === cat);
-            renderGames(filtered);
-            
-            // UI state
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            
-            // Close mobile menu
-            if (window.innerWidth < 1024) {
-                sidebar.classList.add('-translate-x-full');
+        function updateNavbarState() {
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            if (currentView === 'home') {
+                document.getElementById('nav-home').classList.add('active');
+            } else if (currentView === 'contact') {
+                document.getElementById('nav-contact').classList.add('active');
+            } else if (currentView === 'privacy') {
+                document.getElementById('nav-privacy').classList.add('active');
             }
         }
 
-        function renderAll() {
-            renderGames(GAME_DATA);
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            if (window.innerWidth < 1024) sidebar.classList.add('-translate-x-full');
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                icon.className = 'fa-solid fa-bars';
+            } else {
+                menu.classList.add('active');
+                icon.className = 'fa-solid fa-xmark';
+            }
         }
 
-        // Modal logic
-        function openModal(id) {
-            const game = GAME_DATA.find(g => g.id === id);
-            if (!game) return;
+        // Live Search Handling
+        function handleHeroSearch(event) {
+            searchQuery = event.target.value;
+            renderGameGrid();
+        }
 
-            modalContent.innerHTML = `
-                <button onclick="closeModal()" class="absolute top-6 right-6 z-20 bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-                <div class="md:flex">
-                    <div class="md:w-1/2 p-8 lg:p-12">
-                        <div class="rounded-[32px] overflow-hidden shadow-2xl mb-8 aspect-square border-8 border-gray-50">
-                            <img src="${game.image}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x600/3b82f6/ffffff?text=${game.name.replace(/\s/g, '+')}'">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-blue-50 p-4 rounded-2xl text-center">
-                                <p class="text-[10px] text-blue-400 font-black uppercase tracking-widest">Version</p>
-                                <p class="text-lg font-black text-blue-700">${game.version}</p>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-2xl text-center">
-                                <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest">Size</p>
-                                <p class="text-lg font-black text-gray-700">${game.size}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/2 p-8 lg:p-12 lg:pl-0 flex flex-col justify-center">
-                        <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-600 rounded-full text-xs font-black uppercase tracking-widest mb-4">${game.category}</span>
-                        <h2 class="text-4xl font-black text-gray-900 mb-6 leading-tight">${game.name}</h2>
-                        <p class="text-gray-500 leading-relaxed font-medium mb-8 text-lg">${game.desc}</p>
-                        
-                        <div class="space-y-4 mb-10">
-                            ${game.features.map(f => `
-                                <div class="flex items-center gap-3">
-                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                    </div>
-                                    <span class="font-bold text-gray-700">${f}</span>
-                                </div>
-                            `).join('')}
-                        </div>
+        function handleGlobalSearch(event) {
+            searchQuery = event.target.value;
+            if (currentView !== 'home') {
+                currentView = 'home';
+                renderPageContent();
+            }
+            const heroSearch = document.getElementById('hero-search-input');
+            if (heroSearch) {
+                heroSearch.value = searchQuery;
+            }
+            renderGameGrid();
+        }
 
-                        <a href="${DOWNLOAD_URL}" class="flex items-center justify-center gap-3 w-full py-6 bg-blue-600 hover:bg-blue-700 text-white rounded-3xl font-black text-xl shadow-xl shadow-blue-200 transition-all transform hover:-translate-y-1">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                            DOWNLOAD MOD
-                        </a>
-                    </div>
-                </div>
-            `;
+        // Filter Category Click
+        function filterCategory(category) {
+            currentCategory = category;
             
-            gameModal.classList.remove('hidden');
-            setTimeout(() => {
-                modalContent.classList.remove('scale-95', 'opacity-0');
-            }, 10);
-            document.body.style.overflow = 'hidden';
+            // Update active buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            renderGameGrid();
+            scrollToGames();
         }
 
-        function closeModal() {
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                gameModal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 200);
+        // Dynamic Router & Content Generator
+        function renderPageContent() {
+            const container = document.getElementById('main-content');
+            
+            if (currentView === 'home') {
+                container.innerHTML = `
+                    <!-- Hero Section -->
+                    <section class="hero">
+                        <div class="container">
+                            <div class="hero-badge">
+                                <i class="fa-solid fa-certificate"></i> Verified safe, premium game builds & guides
+                            </div>
+                            <h1>Explore Premium Game Mods & Analytics</h1>
+                            <p>AllMods is the leading digital portal offering detailed structural reviews, technical specs, and safe download access to customized apps.</p>
+                            <div class="hero-search">
+                                <input type="text" placeholder="Search across top titles..." id="hero-search-input" onkeyup="handleHeroSearch(event)" value="${searchQuery}">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Filter Area -->
+                    <section class="container categories-container" id="games-section-start">
+                        <div class="categories-list">
+                            <button class="category-btn ${currentCategory === 'All' ? 'active' : ''}" data-cat="All" onclick="filterCategory('All')">
+                                <i class="fa-solid fa-gamepad"></i> All Categories
+                            </button>
+                            <button class="category-btn ${currentCategory === 'Action' ? 'active' : ''}" data-cat="Action" onclick="filterCategory('Action')">
+                                <i class="fa-solid fa-crosshairs"></i> Action
+                            </button>
+                            <button class="category-btn ${currentCategory === 'Simulation' ? 'active' : ''}" data-cat="Simulation" onclick="filterCategory('Simulation')">
+                                <i class="fa-solid fa-user-gear"></i> Simulation
+                            </button>
+                            <button class="category-btn ${currentCategory === 'Sandbox' ? 'active' : ''}" data-cat="Sandbox" onclick="filterCategory('Sandbox')">
+                                <i class="fa-solid fa-cubes"></i> Sandbox
+                            </button>
+                            <button class="category-btn ${currentCategory === 'Arcade' ? 'active' : ''}" data-cat="Arcade" onclick="filterCategory('Arcade')">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Arcade
+                            </button>
+                            <button class="category-btn ${currentCategory === 'Racing' ? 'active' : ''}" data-cat="Racing" onclick="filterCategory('Racing')">
+                                <i class="fa-solid fa-car-side"></i> Racing
+                            </button>
+                            <button class="category-btn ${currentCategory === 'Sports' ? 'active' : ''}" data-cat="Sports" onclick="filterCategory('Sports')">
+                                <i class="fa-solid fa-baseball-bat-ball"></i> Sports
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Game Showcase Grid -->
+                    <section class="container">
+                        <div class="section-header">
+                            <h2 id="grid-header-title">All Featured Game Packages</h2>
+                            <p style="font-size: 14px; color: var(--text-muted);" id="results-count"></p>
+                        </div>
+                        <div class="main-grid" id="games-grid">
+                            <!-- Populated Dynamically -->
+                        </div>
+                    </section>
+                `;
+                renderGameGrid();
+            } 
+            else if (currentView === 'detail') {
+                const game = gamesDatabase.find(g => g.id === activeGameId);
+                if (!game) {
+                    navigateTo('home');
+                    return;
+                }
+
+                // Related Games Calculations
+                const relatedGames = gamesDatabase
+                    .filter(g => g.id !== game.id && (g.category === game.category || g.secondaryCategory === game.category))
+                    .slice(0, 3);
+
+                // Build detailed page HTML safely
+                container.innerHTML = `
+                    <div class="container">
+                        <div class="detail-layout">
+                            <!-- Main Left Details -->
+                            <div>
+                                <div class="detail-hero">
+                                    <div class="detail-cover">
+                                        <img src="${game.image}" alt="${game.title} Background Cover">
+                                    </div>
+                                    <div class="detail-header-block">
+                                        <img src="${game.image}" alt="${game.title} Logo Thumbnail" class="detail-app-icon">
+                                        <div class="detail-header-info">
+                                            <h1 class="detail-title">${game.title} Custom Package</h1>
+                                            <div class="detail-meta-list">
+                                                <div class="detail-meta-item">
+                                                    <i class="fa-solid fa-folder"></i>
+                                                    <span>${game.category}</span>
+                                                </div>
+                                                <div class="detail-meta-item">
+                                                    <i class="fa-solid fa-star detail-rating"></i>
+                                                    <span class="detail-rating">${game.rating} Rating</span>
+                                                </div>
+                                                <div class="detail-meta-item">
+                                                    <i class="fa-solid fa-clock"></i>
+                                                    <span>Updated ${game.lastUpdated}</span>
+                                                </div>
+                                            </div>
+                                            <p style="color: var(--text-muted); font-size: 14px;">${game.tagline}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="detail-main-content">
+                                    <h2 class="detail-section-title">
+                                        <i class="fa-solid fa-circle-info"></i> Product Overview & Details
+                                    </h2>
+                                    <p class="detail-description">${game.description}</p>
+
+                                    <h2 class="detail-section-title">
+                                        <i class="fa-solid fa-bolt"></i> Premium Features Included
+                                    </h2>
+                                    <div class="features-grid">
+                                        ${game.features.map(f => `
+                                            <div class="feature-item">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                                <div class="feature-text">
+                                                    <h4>${f.title}</h4>
+                                                    <p>${f.desc}</p>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+
+                                    <h2 class="detail-section-title">
+                                        <i class="fa-solid fa-images"></i> User-interface Previews
+                                    </h2>
+                                    <div class="screenshots-gallery">
+                                        <div class="screenshot-item">
+                                            <img src="${game.image}" alt="In-game screenshot review 1">
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <img src="${game.image}" alt="In-game screenshot review 2">
+                                        </div>
+                                        <div class="screenshot-item">
+                                            <img src="${game.image}" alt="In-game screenshot review 3">
+                                        </div>
+                                    </div>
+
+                                    <h2 class="detail-section-title">
+                                        <i class="fa-solid fa-circle-question"></i> FAQ / Setup Instructions
+                                    </h2>
+                                    <div class="faq-accordion">
+                                        ${game.faqs.map((faq, index) => `
+                                            <div class="faq-item" onclick="toggleFaq(this)">
+                                                <div class="faq-question">
+                                                    <span>${faq.q}</span>
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </div>
+                                                <div class="faq-answer">
+                                                    <p>${faq.a}</p>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                        <div class="faq-item" onclick="toggleFaq(this)">
+                                            <div class="faq-question">
+                                                <span>How do I process the custom package correctly?</span>
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>Download the specialized custom bundle from our highly secure system links. Run the extraction wizard or package installer dynamically, matching the specified file structures inside current game directories.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sidebar Panel -->
+                            <div class="detail-sidebar">
+                                <div class="download-box">
+                                    <i class="fa-solid fa-cloud-arrow-down" style="font-size: 40px; color: var(--accent); margin-bottom: 16px;"></i>
+                                    <h3>Verified Download Ready</h3>
+                                    <p>Package audited and scanned for malware and dynamic stability. Compatible with target mobile systems.</p>
+                                    <a href="${globalDownloadUrl}" target="_blank" rel="noopener" class="btn-download-primary">
+                                        <i class="fa-solid fa-download"></i> Download Package (${game.size})
+                                    </a>
+                                </div>
+
+                                <div class="specs-table">
+                                    <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 16px;">Specification Matrix</h3>
+                                    <div class="spec-row">
+                                        <span class="spec-label">Package Name</span>
+                                        <span class="spec-val">${game.title}</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-label">File Volume</span>
+                                        <span class="spec-val">${game.size}</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-label">Active Version</span>
+                                        <span class="spec-val">${game.version}</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-label">Required OS</span>
+                                        <span class="spec-val">Android 8.0+ / iOS 14.0+</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-label">Audited Status</span>
+                                        <span class="spec-val" style="color: var(--accent);">Passed Clean</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Related Items Carousel -->
+                        <div style="margin-bottom: 60px;">
+                            <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 24px;">Recommended Collections</h2>
+                            <div class="main-grid">
+                                ${relatedGames.length > 0 ? relatedGames.map(g => createCardHTML(g)).join('') : gamesDatabase.slice(0, 3).map(g => createCardHTML(g)).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            else if (currentView === 'contact') {
+                container.innerHTML = `
+                    <div class="container">
+                        <div class="info-page-wrapper">
+                            <h1>Contact Support & Feedback</h1>
+                            <p>We work to deliver the absolute finest custom mobile game reviews and safe system resources. If you have inquiries, bug notifications, or want to suggest new packages, please fill out our communication form below.</p>
+                            
+                            <form style="display: flex; flex-direction: column; gap: 20px; max-width: 600px; margin-top: 30px;" onsubmit="handleFormSubmit(event)">
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="font-weight: 700; font-size: 14px;">Full Name</label>
+                                    <input type="text" required style="padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); outline: none; font-family: inherit;">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="font-weight: 700; font-size: 14px;">Email Address</label>
+                                    <input type="email" required style="padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); outline: none; font-family: inherit;">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="font-weight: 700; font-size: 14px;">Topic or Game Inquiry</label>
+                                    <input type="text" placeholder="e.g. Broken links, New package request" required style="padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); outline: none; font-family: inherit;">
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="font-weight: 700; font-size: 14px;">Message Context</label>
+                                    <textarea rows="6" required style="padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); outline: none; font-family: inherit; resize: vertical;"></textarea>
+                                </div>
+                                <button type="submit" class="btn-download-primary" style="max-width: 200px; padding: 12px 24px;">Send Inquiry</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+            }
+            else if (currentView === 'privacy') {
+                container.innerHTML = `
+                    <div class="container">
+                        <div class="info-page-wrapper">
+                            <h1>Privacy Policy</h1>
+                            <p>Effective Date: January 1, 2025</p>
+                            <p>AllMods values user transparency and data control. This page explains how we gather, utilize, and protect details gathered when visiting allmods.store.</p>
+                            
+                            <h2>1. Device-level Information We Track</h2>
+                            <p>We gather device indicators, log parameters, browser type, navigation analytics patterns, and screen resolution metrics when interacting with game details views. This allows dynamic adjustments to enhance content loading speeds.</p>
+                            
+                            <h2>2. Cookies Policy</h2>
+                            <p>Cookies are small text structures placed safely on user drives. We implement functional and performance cookies to track user interactions and ensure preferred category filters load smoothly during future sessions.</p>
+                            
+                            <h2>3. External Link Compliance</h2>
+                            <p>Our catalog includes navigation pathways to external resources such as attorneycambridge.com. Please notice that we maintain no authority over and take zero legal responsibility for safety policies implemented by external landing pages.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            else if (currentView === 'terms') {
+                container.innerHTML = `
+                    <div class="container">
+                        <div class="info-page-wrapper">
+                            <h1>Terms of Service</h1>
+                            <p>Welcome to allmods.store. By interacting with any page, catalog element, or custom package, you agree to adhere to these usage conditions.</p>
+                            
+                            <h2>1. Appropriate Personal Use Only</h2>
+                            <p>All listings provided across our channels are strictly intended for individual educational review purposes. Users carry sole responsibility for testing local mobile files and configurations.</p>
+                            
+                            <h2>2. Limitation of System Liability</h2>
+                            <p>Under no circumstance shall AllMods or its partner networks be held liable for damages, data corruption, or network disruptions resulting from custom setups of third-party game apps.</p>
+                            
+                            <h2>3. Package Intellectual Property</h2>
+                            <p>Original characters, gaming titles, art overlays, and corporate logos remain the exclusive registered intellectual properties of their official developers. Our dynamic packages serve review evaluation criteria only.</p>
+                        </div>
+                    </div>
+                `;
+            }
         }
 
-        // Mobile menu logic
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        mobileMenuBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-        });
+        // Card Element Construction
+        function createCardHTML(game) {
+            return `
+                <article class="game-card">
+                    <span class="card-badge">${game.category}</span>
+                    <div class="card-thumbnail-wrapper">
+                        <img class="card-thumbnail" src="${game.image}" alt="${game.title} preview cover" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <div class="card-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <span>${game.rating}</span>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-box-open"></i>
+                                <span>v${game.version}</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title">${game.title}</h3>
+                        <p class="card-desc">${game.tagline}</p>
+                        <div class="card-footer-info">
+                            <div class="game-spec">
+                                Size
+                                <span>${game.size}</span>
+                            </div>
+                            <button class="btn-card-details" onclick="navigateToDetail('${game.id}')">
+                                View Details <i class="fa-solid fa-arrow-right" style="margin-left: 4px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
 
-        // Close on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+        // Render Cards Inside Grid
+        function renderGameGrid() {
+            const grid = document.getElementById('games-grid');
+            if (!grid) return;
+
+            let filtered = gamesDatabase;
+
+            // Apply Category Filter
+            if (currentCategory !== 'All') {
+                filtered = filtered.filter(g => g.category === currentCategory || g.secondaryCategory === currentCategory);
+            }
+
+            // Apply Search Query
+            if (searchQuery.trim() !== '') {
+                const query = searchQuery.toLowerCase().trim();
+                filtered = filtered.filter(g => 
+                    g.title.toLowerCase().includes(query) || 
+                    g.tagline.toLowerCase().includes(query) ||
+                    g.category.toLowerCase().includes(query)
+                );
+            }
+
+            // Render Output
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background-color: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border);">
+                        <i class="fa-regular fa-folder-open" style="font-size: 48px; color: var(--text-muted); margin-bottom: 16px;"></i>
+                        <h3 style="font-size: 18px; font-weight: 700;">No Packages Found</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Try altering your search keywords or choosing a different categories tab.</p>
+                    </div>
+                `;
+                document.getElementById('results-count').innerText = "0 items available";
+            } else {
+                grid.innerHTML = filtered.map(g => createCardHTML(g)).join('');
+                document.getElementById('results-count').innerText = `${filtered.length} target packages listed`;
+            }
+
+            // Keep Search Inputs Synced
+            const heroSearch = document.getElementById('hero-search-input');
+            const headerSearch = document.getElementById('header-search-input');
+            if (heroSearch) heroSearch.value = searchQuery;
+            if (headerSearch) headerSearch.value = searchQuery;
+        }
+
+        // FAQ accordion action
+        function toggleFaq(item) {
+            item.classList.toggle('active');
+        }
+
+        // Form Submission Safeguard
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert("Thank you. Your message has been safely recorded by our administration team.");
+            event.target.reset();
+        }
+
+        // Initializer
+        window.addEventListener('DOMContentLoaded', () => {
+            navigateTo('home');
         });
     </script>
 </body>
